@@ -4,6 +4,7 @@ import dom from '../../assets/dom.jpg'
 import dom2 from '../../assets/dom2.jpg'
 import dom3 from '../../assets/dom3.jpg'
 import dom4 from '../../assets/dom4.jpg'
+import { MdHeight } from 'react-icons/md'
 
 
 const CapaMain = () => {
@@ -13,6 +14,7 @@ const arrayImages = [dom,dom2,dom3,dom4]
 let [value,setValue] = useState(0)
 const divStyle = {
   width: "100%",
+  height: "90vh",
   backgroundImage: `url(${arrayImages[value]})`, 
   backgroundSize: "cover",      
   backgroundPosition: "center",  
@@ -27,10 +29,10 @@ useEffect(() => {
         setValue(0)
       }
     }, 4000);
-    return () => clearInterval(interval); // Limpa o intervalo ao desmontar o componente
+    return () => clearInterval(interval);
   }, [value]);
   return (
-    <div className={`w-full h-screen relative bg-[url('${dom}')]`} style={divStyle} shadow-lg>
+    <div className={`w-full relative bg-[url('${dom}')]`} style={divStyle} shadow-lg>
       <Header />
     </div>
   )

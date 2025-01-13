@@ -13,6 +13,9 @@ export default {
         Roboto:['"Roboto"', 'sans-serif']
 
       },
+      animation: {
+        'fadeIn': 'fadeIn 1s ease-in-out forwards' ,
+      },
       colors: {
         roxo: '#c25cd8',  
         dourado: '#ffff00', 

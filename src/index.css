@@ -3,3 +3,18 @@
 @tailwind components;
 @tailwind utilities;
 
+.fadeOnRenderDiv{
+    animation: fadeIn .3ms ease-in-out forwards;
+    animation-timeline: view();
+    animation-range: cover 0% cover 30%;
+}
+
+
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+}
