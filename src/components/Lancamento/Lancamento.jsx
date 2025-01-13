@@ -8,7 +8,7 @@ const Lancamento = () => {
   const handleTouchStart = (e) => {
     setStartX(e.touches[0].clientX); 
   };
-  const apiKey = "AIzaSyBjK1M3gsWEZCA75qYeIXBFzgoVu7vKcqY"
+  const apiKey = import.meta.env.VITE_YOUTUBE_API_KEY;
   const channelId = "UCsqWor944vkdqX_fSo2lcxQ"
 
   const handleTouchMove = (e) => {
@@ -19,7 +19,7 @@ const Lancamento = () => {
       
       const screenWidth = window.innerWidth;
       const componenteWidth = document.getElementById("container").offsetWidth; 
-      const maxTranslateX = 450; 
+      const maxTranslateX = 2500; 
       const minTranslateX = screenWidth - componenteWidth; 
       setTranslateX((prev) => {
         const newTranslateX = prev + deltaX;
@@ -108,10 +108,13 @@ const fetchVideos = async (pageToken = '') => {
 useEffect(()=>{
   fetchVideos()
 },[])
+
 console.log(videos)
 return (
     <div className='flex-row justify-items-center text-left	w-[100%] bg-gradient-to-b from-purple-600 to-[#ff335e]'>
         <h2 className='font-gloria text-6xl font-bold text-white mb-8 align-left'>Lançamentos</h2>
+        {!loading && 
+        <>
         <iframe width="90%" height="315" src={videoLancamento.url} title={videoLancamento.titulo} frameborder="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         <div className='flex-row text-center'>
           <h3 className='text-dourado text-2xl font-bold'>{videoLancamento.titulo}</h3>
@@ -120,6 +123,8 @@ return (
           <p className='text-white'>Lançamento: {videoLancamento.lancamento}</p>
           <p className='text-dourado text-xl'>+de <span className='font-bold'>450</span>  inscritos</p>
         </div>
+        </>
+        }
 
         <h3 className='mt-6 text-4xl text-white font-bold'>Últimos lançamentos</h3>
         <div className='flex gap-6 mt-4 w-max'
@@ -131,11 +136,13 @@ return (
           transform: `translateX(${translateX}px)`,
         }}
         >
-            {musicas.map((m,index)=>{
-             return <div className='w-[300px] flex-row justify-center text-center' onClick={()=>console.log(index)}> 
-                <img className='rounded-2xl z-10' src={m.tumb} alt={m.titulo} />
-                <p className='text-white font-bold'>{m.titulo}</p>
+            {!loading && videos.map((m,index)=>{
+            if(index!= 0){
+              return <div className='w-[300px] flex-row justify-center text-center' onClick={()=>console.log(index)}> 
+                <img className='rounded-2xl z-10' src={m.thumbnail} alt={m.titulo} />
+                <p className='text-white font-bold'>{m.title}</p>
               </div>
+              }
             })}
         </div>
     </div>
