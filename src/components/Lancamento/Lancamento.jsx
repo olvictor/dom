@@ -64,6 +64,8 @@ const Lancamento = () => {
 const [loading,setLoading] = useState(false);
 const [error,setError] = useState(false)
 const [videos, setVideos] = useState([])
+const [videoPrincipal,setVideoPrincipal] = useState(null)
+
 const fetchVideos = async (pageToken = '') => {
   setLoading(true);
   try {
@@ -72,6 +74,7 @@ const fetchVideos = async (pageToken = '') => {
     const searchResponse = await fetch(
       `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&channelId=${channelId}&maxResults=50&order=date&key=${apiKey}`
     );
+    
     const searchData = await searchResponse.json();
 
   
@@ -80,6 +83,8 @@ const fetchVideos = async (pageToken = '') => {
     const detailsResponse = await fetch(
       `https://www.googleapis.com/youtube/v3/videos?part=contentDetails,snippet&id=${videoIds}&key=${apiKey}`
     );
+
+  
     const detailsData = await detailsResponse.json();
 
     const filteredVideos = detailsData.items.filter((video) => {
@@ -91,15 +96,20 @@ const fetchVideos = async (pageToken = '') => {
       return totalSeconds > 60 && totalSeconds <= 480; // 1 min (60s) a 8 min (480s)
     });
 
+
     setVideos(filteredVideos.map((video) => ({
       id: video.id,
       title: video.snippet.title,
       description: video.snippet.description,
       thumbnail: video.snippet.thumbnails.medium.url,
+      lancamento: video.snippet.publishedAt
     })));
+
+    setVideoPrincipal(videos[0])
+
   } catch (error) {
     setLoading(false)
-    console.error('Erro ao buscar vídeos:', error);
+    console.log('Erro ao buscar vídeos:', error);
   }finally{
     setLoading(false)
   }
@@ -109,15 +119,31 @@ useEffect(()=>{
   fetchVideos()
 },[])
 
-console.log(videos)
+// useEffect(() => {
+//   console.log("aa")
+//   if (videoPrincipal) {
+//     const fetchVideoStats = async () => {
+//       const response = await fetch(
+//         `https://www.googleapis.com/youtube/v3/videos?part=statistics&id=${videoPrincipal.id}&key=${apiKey}`
+//       );
+//       const data = await response.json();
+//       setVideoPrincipal((prevState)=>({
+//           ...prevState,
+//           visualizacoes: data.statistics
+//         }))
+//     };
+
+//     fetchVideoStats();
+//   }
+// }, [videoPrincipal]);
 return (
-    <div className='flex-row justify-items-center text-left	w-[100%] bg-gradient-to-b from-purple-600 to-[#ff335e]'>
+    <div className='fade flex-row h-screen justify-items-center text-left	w-[100%] bg-gradient-to-b from-purple-600 to-[#ff335e]'>
         <h2 className='font-gloria text-6xl font-bold text-white mb-8 align-left'>Lançamentos</h2>
         {!loading && 
         <>
         <iframe width="90%" height="315" src={videoLancamento.url} title={videoLancamento.titulo} frameborder="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         <div className='flex-row text-center'>
-          <h3 className='text-dourado text-2xl font-bold'>{videoLancamento.titulo}</h3>
+          <h3 className='text-dourado text-2xl font-bold'>{videoLancamento.titulo.title}</h3>
           <p className='text-6xl font-bold text-dourado'><NumeroAnimado  n={+videoLancamento.visualizacoes}/></p>
           <span className='text-xl text-white'>Visualizações</span>
           <p className='text-white'>Lançamento: {videoLancamento.lancamento}</p>

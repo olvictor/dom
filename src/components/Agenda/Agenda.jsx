@@ -32,10 +32,9 @@ const Agenda = () => {
   
 
   return (
-    <div className={`fadeOnRenderDiv bg-rosa h-screen flex flex-col text-center justify-center bg-[url('${dom}')]`} style={divStyle} >
-         <h2 className='font-gloria text-6xl font-bold text-white mb-10  opacity-100'>PRÓXIMOS SHOWS</h2>
-
-         <div className='flex gap-6 flex-wrap w-full fadeOnRenderDiv'>
+    <div className={`fade bg-rosa h-screen flex flex-col text-center opacity-0	 justify-center bg-[url('${dom}')]`} style={divStyle} >
+      <h2 className='font-gloria text-6xl font-bold text-white mb-10  opacity-100'>PRÓXIMOS SHOWS</h2>
+         <div className='flex gap-6 flex-wrap w-full'>
             {shows.map((s)=>{
                return <div className='flex justify-center text-white w-1/2 h-[130px] rounded-xl text-center shadow'>
                     <div className='flex text-center justify-center items-center  border-r border-white '>
