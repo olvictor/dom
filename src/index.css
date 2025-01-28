@@ -5,7 +5,7 @@
 
 
 .fade{
-    animation: fadeIn  1ms ease-in-out forwards;
+    animation: fadeIn  3s ease-in-out forwards;
     animation-timeline: view();
     animation-range: cover 0% cover 30%;
 }

@@ -6,7 +6,7 @@ import { FaYoutube } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <div className='bg-black h-[250px] text-white text-center py-6'>
+    <div id="contato" className='bg-black h-[250px] text-white text-center py-6'>
         <h2 className='font-Monoton text-4xl'>Dom Valdenon</h2>
         <div className='flex justify-center mt-6 gap-4'>
           <IoLogoInstagram  size={50}/>

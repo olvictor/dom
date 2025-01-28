@@ -32,7 +32,7 @@ useEffect(() => {
     return () => clearInterval(interval);
   }, [value]);
   return (
-    <div className={`w-full relative bg-[url('${dom}')]`} style={divStyle} shadow-lg>
+    <div id='capa' className={`w-full relative bg-[url('${dom}')]`} style={divStyle} shadow-lg>
       <Header />
     </div>
   )

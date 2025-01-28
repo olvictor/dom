@@ -10,7 +10,7 @@ function App() {
 
   return (
     
-    <div className='md:px-28 font-Roboto '>
+    <div className='md:px-28 font-Roboto'>
       <CapaMain />
       <Lancamento />
       <Agenda />
