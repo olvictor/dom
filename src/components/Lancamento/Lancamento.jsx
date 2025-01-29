@@ -159,7 +159,7 @@ return (
         <h2 className='font-gloria text-6xl font-bold text-white mb-8 align-left'>Lançamentos</h2>
         {videoPrincipal && 
         <>
-        <img className='w-full opacity-80 rounded-xl border-solid border-2 border-white' src={videoPrincipal.thumbnail} alt={videoPrincipal.title} />
+        <img className='w-full md:w-4/5 drop-shadow-3xl opacity-80 rounded-xl border-solid border-2 border-white' src={videoPrincipal.thumbnail} alt={videoPrincipal.title} />
         <div className='flex-row text-center'>
           <h3 className='text-dourado drop-shadow-lg text-2xl font-bold'>{videoPrincipal.title}</h3>
           <p className='text-6xl font-bold drop-shadow-lg text-dourado'><NumeroAnimado  n={+videoLancamento.visualizacoes}/></p>

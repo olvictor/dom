@@ -10,7 +10,14 @@
     animation-range: cover 0% cover 30%;
 }
   
-  
+.fade-effect {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.fade-effect.active {
+  opacity: 1;
+}
   
 @keyframes fadeIn {
       from {
