@@ -6,7 +6,7 @@ import { FaYoutube } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <div id="contato" className='bg-[#000000] bg-[radial-gradient(#ffffff33_.15px,#0A0A0A_1px)] bg-[size:20px_20px] text-white text-center py-6'>
+    <div id="contato" className='bg-[#1e1e1e] bg-[radial-gradient(#ffffff33_.15px,#1e1e1e_1px)] bg-[size:20px_20px] text-white text-center py-6'>
         <h2 className='font-Monoton text-4xl'>Dom Valdenon</h2>
         <div className='flex justify-center mt-6 gap-4'>
           <IoLogoInstagram  size={50}/>
